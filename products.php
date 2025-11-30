@@ -60,7 +60,7 @@
               <td >
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">                  
                   <label class="btn btn-primary btn-sm">
-                    <a href="" class="text-white"><i class="fas fa-pen"></i></a>
+                    <a href="editProduct-form.php?id=<?= $product['p_code']?>" class="text-white"><i class="fas fa-pen"></i></a>
                   </label>
                   <label class="btn btn-danger btn-sm">
                     <a href="./functions/deleteProduct.php?id=<?= $product['p_code']?>" class="text-white"><i class="fas fa-trash"></i></a>

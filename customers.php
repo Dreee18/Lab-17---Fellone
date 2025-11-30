@@ -1,6 +1,6 @@
 <?php
   include 'functions/function_list.php';
-  $page = 'Vendors';
+  $page = 'Customers';
 ?>
 
 <!doctype html>
@@ -25,48 +25,46 @@
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Vendors List</h1>        
+        <h1 class="h2">Customer List</h1>        
       </div>
 
-      <a href="vendor-form.php" class="btn btn-success text-white mb-3 float-right"><i class="fas fa-plus-square"></i> Add Vendor</a>
+      <a href="customer-form.php" class="btn btn-success text-white mb-3 float-right"><i class="fas fa-plus-square"></i> Add Customer</a>
 
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
               <th>Code</th>
-              <th>Vendor Name</th>              
-              <th>Contact</th>
+              <th>Customer Name</th>              
               <th>Area Code</th>
               <th>Phone Number</th>
-              <th>State</th>
-              <th>Order</th>
+              <th>Balance</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
 
           <?php 
-            $vendors = getAllVendors();
+            $customers = getAllCustomers();
 
-            foreach($vendors as $vendor){
+            foreach($customers as $customer){
+
+              $cus_name = $customer['cus_lname'].','.' '.$customer['cus_fname'].' '.$customer['cus_initial'];
           ?>
 
             <tr>
-              <td><?= $vendor['v_code']?></td>
-              <td><?= $vendor['v_name']?></td>
-              <td><?= $vendor['v_contact']?></td>
-              <td><?= $vendor['v_areacode']?></td>
-              <td><?= $vendor['v_phone']?></td>
-              <td><?= $vendor['v_state']?></td>
-              <td><?= $vendor['v_order']?></td>
+              <td><?= $customer['cus_code']?></td>
+              <td><?= $cus_name?></td>
+              <td><?= $customer['cus_areacode']?></td>
+              <td><?= $customer['cus_phone']?></td>
+              <td><?= $customer['cus_balance']?></td>
               <td >
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">                  
                   <label class="btn btn-primary btn-sm">
-                    <a href="editVendor-form.php?id=<?= $vendor['v_code']?>" class="text-white"><i class="fas fa-pen"></i></a>
+                    <a href="editCustomer-form.php?id=<?= $customer['cus_code']?>" class="text-white"><i class="fas fa-pen"></i></a>
                   </label>
                   <label class="btn btn-danger btn-sm">
-                    <a href="functions/deleteVendor.php?id=<?= $vendor['v_code']?>" class="text-white"><i class="fas fa-trash"></i></a>
+                    <a href="functions/deleteCustomer.php?id=<?= $customer['cus_code']?>" class="text-white"><i class="fas fa-trash"></i></a>
                   </label>
                 </div>
               </td>

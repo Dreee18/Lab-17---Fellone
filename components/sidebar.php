@@ -28,6 +28,13 @@
               Vendors
             </a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link <?= $page == 'Customers' ? 'active' : ''?>" href="customers.php">
+              <span data-feather="users"></span>
+               Customers
+            </a>
+          </li>
           
         </ul>
       </div>

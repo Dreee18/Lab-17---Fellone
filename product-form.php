@@ -1,3 +1,8 @@
+<?php
+  include 'functions/function_list.php';
+  $page = 'Products';
+?>
+
 <!doctype html>
 <html lang="en">
   <?php include 'components/head.php'?>
@@ -14,32 +19,62 @@
         <h1 class="h2">Add Products</h1>        
       </div>
       <div class="col-md-6">
-        <form>
+        <form method="POST" action="functions/addProduct.php">
           <div class="form-row">
             <div class="form-group col-md-3">
               <label for="code">Product Code</label>
-              <input type="text" class="form-control" id="productcode">
+              <input type="text" class="form-control" id="productcode" name="product[code]" required>
             </div>
            
           </div>
+
           <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="">
+            <input type="text" class="form-control" id="description" name="product[description]" required>
           </div>
       
           <div class="form-row">
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
               <label for="price">Price</label>
-              <input type="text" class="form-control" id="price">
+              <input type="number" class="form-control" id="price" step="0.01" name="product[price]" min="0" placeholder="0.00" required>
             </div>
            
             <div class="form-group col-md-2">
               <label for="stocks">Stocks</label>
-              <input type="text" class="form-control" id="stocks">
+              <input type="number" class="form-control" id="stocks" name="product[stocks]" min="0" placeholder="0">
+            </div>
+
+            <div class="form-group col-md-2">
+              <label for="price">Discount</label>
+              <input type="number" class="form-control" id="price" step="0.01" name="product[discount]" value=0 min="0" placeholder="0.00">
             </div>
           </div>
-          <button type="reset" class="btn btn-secondary">Reset</button>
-          <button type="submit" class="btn btn-primary">Save</button>
+
+          <div class="form-col mb-3">
+            <label for="vendors">Vendors</label>
+            <select class="form-select" name="product[vendor]" id="vendors" required>
+              <option value="" disabled selected>Select Vendor</option>
+                <?php
+                  $vendors = getAllVendors();
+
+                  foreach($vendors as $vendor){
+                ?>
+
+                    <option value="<?= $vendor['v_code'] ?>"><?= $vendor['v_name'] ?></option>
+
+                <?php 
+                  } 
+                ?>
+            </select>
+          </div>
+
+            
+
+          <div class="form-group">
+            <button type="reset" class="btn btn-secondary">Reset</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+
         </form>
       </div>
       
